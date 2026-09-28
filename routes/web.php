@@ -4,7 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('zakat.calculator');
 });
 
 Route::get('/dashboard', function () {
@@ -27,3 +27,4 @@ Route::get('/calculator', function () {
 
 use App\Http\Controllers\FileRenewalController;
 Route::post('/beneficiary/renew-file', [FileRenewalController::class, 'submit'])->middleware('auth');
+
