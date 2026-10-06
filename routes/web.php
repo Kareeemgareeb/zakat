@@ -1,10 +1,10 @@
-﻿<?php
+<?php
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('zakat.calculator');
+    return view('welcome');
 });
 
 Route::get('/dashboard', function () {
@@ -28,3 +28,10 @@ Route::get('/calculator', function () {
 use App\Http\Controllers\FileRenewalController;
 Route::post('/beneficiary/renew-file', [FileRenewalController::class, 'submit'])->middleware('auth');
 
+
+use App\Http\Controllers\BeneficiaryController;
+
+Route::middleware('auth')->group(function () {
+    Route::get('/beneficiary/apply', [BeneficiaryController::class, 'create'])->name('beneficiary.apply');
+    Route::post('/beneficiary/apply', [BeneficiaryController::class, 'store'])->name('beneficiary.apply.store');
+});

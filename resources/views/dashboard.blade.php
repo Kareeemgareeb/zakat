@@ -1,4 +1,4 @@
-﻿<x-app-layout>
+<x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('بوابة المستفيد') }}
@@ -10,15 +10,25 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
 
+                                        @if(session('status'))
+                        <div class="mb-6 p-4 rounded-xl bg-emerald-50 border border-emerald-300 text-emerald-800 font-bold text-sm">
+                            {{ session('status') }}
+                        </div>
+                    @endif
+
                     @if(!$user->beneficiary)
-                        <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 mb-4 rounded">
-                            <div class="flex">
-                                <div class="ml-3">
-                                    <p class="text-sm text-yellow-700 font-bold">
-                                        عذراً، حسابك الحالي غير مرتبط بملف مستفيد في صندوق الزكاة. يرجى مراجعة الإدارة.
-                                    </p>
-                                </div>
+                        <div class="bg-amber-50 border border-amber-200 p-8 rounded-2xl text-center max-w-2xl mx-auto my-6">
+                            <div class="w-14 h-14 bg-amber-100 text-amber-700 rounded-2xl flex items-center justify-center mx-auto text-2xl mb-4">
+                                📋
                             </div>
+                            <h3 class="text-xl font-black text-slate-900 mb-2">حسابك غير مرتبط بملف مستفيد حتى الآن</h3>
+                            <p class="text-slate-600 text-sm mb-6 leading-relaxed">
+                                لكي تتمكن من الاستفادة من المساعدات وصرف الإعانات الدورية، يرجى تعبئة استمارة التسجيل الاجتماعي لفتح ملف لدى صندوق الزكاة بسرت.
+                            </p>
+                            <a href="{{ route('beneficiary.apply') }}" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-extrabold text-sm shadow-md shadow-emerald-800/25 transition">
+                                <span>تعبئة استمارة فتح ملف مستفيد جديد</span>
+                                <span>←</span>
+                            </a>
                         </div>
                     @else
                         <h3 class="text-2xl font-bold text-blue-800 mb-6 border-b pb-2">بيانات الملف الأساسية</h3>
